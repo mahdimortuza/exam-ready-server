@@ -1,17 +1,25 @@
 import { Request, Response } from 'express';
 import { StudentServices } from './student.service';
+import studentValidationSchema from './student.validation';
 
 const createStudent = async (req: Request, res: Response) => {
   try {
     const { student: studentData } = req.body;
-    const result = await StudentServices.createStudentIntoDb(studentData);
+
+    const zodParsedData = studentValidationSchema.parse(studentData);
+
+    const result = await StudentServices.createStudentIntoDb(zodParsedData);
     res.status(200).json({
       success: true,
       message: 'student is created successfully',
       data: result,
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: 'Can not create student',
+      error: error,
+    });
   }
 };
 
@@ -24,7 +32,11 @@ const getAllStudents = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: 'Can not fetch students',
+      error: error,
+    });
   }
 };
 
@@ -38,7 +50,11 @@ const getSingleStudent = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: 'Can not fetch student',
+      error: error,
+    });
   }
 };
 
@@ -53,7 +69,11 @@ const updateStudent = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: 'Can not updated this student',
+      error: error,
+    });
   }
 };
 
@@ -67,7 +87,11 @@ const deleteStudent = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: 'Can not delete this student',
+      error: error,
+    });
   }
 };
 

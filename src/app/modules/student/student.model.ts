@@ -4,10 +4,12 @@ import { TStudent, TStudentName } from './student.interface';
 const studentNameSchema = new Schema<TStudentName>({
   firstName: {
     type: String,
+    trim: true,
     required: [true, 'First name is required'],
   },
   lastName: {
     type: String,
+    trim: true,
     required: [true, 'Last name is required'],
   },
 });
@@ -29,10 +31,12 @@ const studentSchema = new Schema<TStudent>({
   },
   email: {
     type: String,
+    trim: true,
     required: [true, 'Email is required'],
   },
   contactNo: {
     type: String,
+    trim: true,
   },
   profileImage: {
     type: String,
