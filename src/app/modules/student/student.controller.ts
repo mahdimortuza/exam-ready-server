@@ -14,11 +14,11 @@ const createStudent = async (req: Request, res: Response) => {
       message: 'student is created successfully',
       data: result,
     });
-  } catch (error) {
+  } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: 'Can not create student',
-      error: error,
+      message: err.message || 'Can not create student',
+      error: err,
     });
   }
 };
@@ -31,11 +31,11 @@ const getAllStudents = async (req: Request, res: Response) => {
       message: 'students are fetched successfully',
       data: result,
     });
-  } catch (error) {
+  } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: 'Can not fetch students',
-      error: error,
+      message: err.message || 'Can not fetch students',
+      error: err,
     });
   }
 };
@@ -49,11 +49,11 @@ const getSingleStudent = async (req: Request, res: Response) => {
       message: 'student is fetched successfully',
       data: result,
     });
-  } catch (error) {
+  } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: 'Can not fetch student',
-      error: error,
+      message: err.message || 'Can not fetch student',
+      error: err,
     });
   }
 };
@@ -68,11 +68,11 @@ const updateStudent = async (req: Request, res: Response) => {
       message: 'student is updated successfully',
       data: result,
     });
-  } catch (error) {
+  } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: 'Can not updated this student',
-      error: error,
+      message: err.message || 'Can not updated this student',
+      error: err,
     });
   }
 };

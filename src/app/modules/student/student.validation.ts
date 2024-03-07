@@ -10,12 +10,14 @@ const fullNameValidationSchema = z.object({
 });
 export const studentValidationSchema = z.object({
   id: z.string(),
+  password: z.string(),
   name: fullNameValidationSchema,
   gender: z.enum(['male', 'female']),
   email: z.string().email(),
   contactNo: z.string().optional(),
   profileImage: z.string().optional(),
   isPaid: z.enum(['paid', 'unpaid']),
+  isDeleted: z.boolean(),
 });
 
 export default studentValidationSchema;
