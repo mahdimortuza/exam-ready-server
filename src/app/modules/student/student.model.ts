@@ -1,6 +1,4 @@
-import bcrypt from 'bcrypt';
 import { Schema, model } from 'mongoose';
-import config from '../../config';
 import { StudentModel, TStudent, TStudentName } from './student.interface';
 
 const studentNameSchema = new Schema<TStudentName>({
@@ -23,11 +21,13 @@ const studentSchema = new Schema<TStudent, StudentModel>(
       required: [true, 'ID is required'],
       unique: true,
     },
-    password: {
-      type: String,
-      required: [true, 'Password is required'],
-      maxlength: [20, 'password can not be more than 20 character'],
+    user: {
+      type: Schema.Types.ObjectId,
+      required: [true, 'User ID is required'],
+      unique: true,
+      ref: 'User',
     },
+
     name: {
       type: studentNameSchema,
       required: [true, 'Name is required'],
@@ -49,10 +49,7 @@ const studentSchema = new Schema<TStudent, StudentModel>(
     profileImage: {
       type: String,
     },
-    isPaid: {
-      type: String,
-      enum: ['paid', 'unpaid'],
-    },
+
     isDeleted: {
       type: Boolean,
       default: false,
@@ -68,21 +65,6 @@ const studentSchema = new Schema<TStudent, StudentModel>(
 //virtual
 studentSchema.virtual('fullName').get(function () {
   return `${this.name.firstName} ${this.name.lastName}`;
-});
-
-// pre save hook
-studentSchema.pre('save', async function (next) {
-  this.password = await bcrypt.hash(
-    this.password,
-    Number(config.bcrypt_salt_round),
-  );
-  next();
-});
-
-// post save hook
-studentSchema.post('save', function (doc, next) {
-  doc.password = '';
-  next();
 });
 
 studentSchema.pre('find', function (next) {

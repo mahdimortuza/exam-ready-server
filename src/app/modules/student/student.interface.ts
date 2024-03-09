@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 
 export type TStudentName = {
   firstName: string;
@@ -7,13 +7,13 @@ export type TStudentName = {
 
 export type TStudent = {
   id: string;
+  user: Types.ObjectId;
   password: string;
   name: TStudentName;
   gender: 'male' | 'female';
   email: string;
   contactNo?: string;
   profileImage?: string;
-  isPaid: 'paid' | 'unpaid';
   isDeleted: boolean;
 };
 

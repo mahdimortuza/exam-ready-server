@@ -1,29 +1,11 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { StudentServices } from './student.service';
-import studentValidationSchema from './student.validation';
 
-const createStudent = async (req: Request, res: Response) => {
-  try {
-    const { student: studentData } = req.body;
-
-    const zodParsedData = studentValidationSchema.parse(studentData);
-
-    const result = await StudentServices.createStudentIntoDb(zodParsedData);
-    res.status(200).json({
-      success: true,
-      message: 'student is created successfully',
-      data: result,
-    });
-  } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: err.message || 'Can not create student',
-      error: err,
-    });
-  }
-};
-
-const getAllStudents = async (req: Request, res: Response) => {
+const getAllStudents = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const result = await StudentServices.getAllStudentFromDb();
     res.status(200).json({
@@ -31,16 +13,16 @@ const getAllStudents = async (req: Request, res: Response) => {
       message: 'students are fetched successfully',
       data: result,
     });
-  } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: err.message || 'Can not fetch students',
-      error: err,
-    });
+  } catch (err) {
+    next(err);
   }
 };
 
-const getSingleStudent = async (req: Request, res: Response) => {
+const getSingleStudent = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { id } = req.params;
     const result = await StudentServices.getSingleStudentFromDb(id);
@@ -49,16 +31,16 @@ const getSingleStudent = async (req: Request, res: Response) => {
       message: 'student is fetched successfully',
       data: result,
     });
-  } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: err.message || 'Can not fetch student',
-      error: err,
-    });
+  } catch (err) {
+    next(err);
   }
 };
 
-const updateStudent = async (req: Request, res: Response) => {
+const updateStudent = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { id } = req.params;
     const { student: studentData } = req.body;
@@ -68,16 +50,16 @@ const updateStudent = async (req: Request, res: Response) => {
       message: 'student is updated successfully',
       data: result,
     });
-  } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: err.message || 'Can not updated this student',
-      error: err,
-    });
+  } catch (err) {
+    next(err);
   }
 };
 
-const deleteStudent = async (req: Request, res: Response) => {
+const deleteStudent = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { id } = req.params;
     const result = await StudentServices.deleteStudentFromDb(id);
@@ -86,17 +68,12 @@ const deleteStudent = async (req: Request, res: Response) => {
       message: 'student is deleted successfully',
       data: result,
     });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Can not delete this student',
-      error: error,
-    });
+  } catch (err) {
+    next(err);
   }
 };
 
 export const StudentControllers = {
-  createStudent,
   getAllStudents,
   getSingleStudent,
   updateStudent,
