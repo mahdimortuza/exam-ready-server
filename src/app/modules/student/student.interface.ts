@@ -6,7 +6,6 @@ export type TStudentName = {
 };
 
 export type TStudent = {
-  id: string;
   user: Types.ObjectId;
   password: string;
   name: TStudentName;
@@ -19,5 +18,5 @@ export type TStudent = {
 
 //for creating static
 export interface StudentModel extends Model<TStudent> {
-  isStudentExists(id: string): Promise<TStudent | null>;
+  isStudentExists(email: string): Promise<TStudent | null>;
 }

@@ -14,16 +14,12 @@ const createStudentIntoDb = async (password: string, studentData: TStudent) => {
   //   set student role
   userData.role = 'student';
 
-  // set manually generated id
-  userData.id = '2030100001';
-
   // create user
   const newUser = await User.create(userData);
 
   // create a student
   if (Object.keys(newUser).length) {
     // set id, _id as user
-    studentData.id = newUser.id;
     studentData.user = newUser._id; // reference ID
 
     const newStudent = await Student.create(studentData);
