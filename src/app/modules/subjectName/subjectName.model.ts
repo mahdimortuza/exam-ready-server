@@ -46,6 +46,7 @@ subjectNameSchema.pre('aggregate', function (next) {
 //   return existingSubjectName;
 // };
 
+// preventing duplication
 subjectNameSchema.pre('save', async function (next) {
   const isSubjectExists = await SubjectName.findOne({
     subjectName: this.subjectName,
@@ -53,6 +54,18 @@ subjectNameSchema.pre('save', async function (next) {
 
   if (isSubjectExists) {
     throw new Error('This subject already exists');
+  }
+  next();
+});
+
+// update only if the subject name exists
+subjectNameSchema.pre('findOneAndUpdate', async function (next) {
+  const query = this.getQuery();
+
+  const isSubjectExists = await SubjectName.findOne(query);
+
+  if (!isSubjectExists) {
+    throw new Error('This Subject name does not exists.');
   }
   next();
 });

@@ -14,6 +14,21 @@ const createSubjectName = catchAsync(async (req, res) => {
   });
 });
 
+const updateSubjectName = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await SubjectNameServices.updateSubjectNameIntoDb(
+    id,
+    req.body,
+  );
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Subject name is updated successfully',
+    data: result,
+  });
+});
+
 export const SubjectNameController = {
   createSubjectName,
+  updateSubjectName,
 };

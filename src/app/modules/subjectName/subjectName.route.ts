@@ -10,4 +10,6 @@ router.post(
   SubjectNameController.createSubjectName,
 );
 
+router.patch('/:id', SubjectNameController.updateSubjectName);
+
 export const SubjectNameRoutes = router;
