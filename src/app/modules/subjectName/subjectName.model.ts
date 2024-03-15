@@ -12,7 +12,7 @@ const subjectNameSchema = new Schema<TSubjectNames>(
     createdBy: {
       type: Schema.Types.ObjectId,
       required: [true, 'Admin name is required'],
-      ref: 'Students',
+      ref: 'Admin',
     },
     isDeleted: {
       type: Boolean,
