@@ -1,4 +1,6 @@
+import httpStatus from 'http-status';
 import { Schema, model } from 'mongoose';
+import { AppError } from '../../errors/AppError';
 import { Subjects } from './subjectName.constant';
 import { TSubjectNames } from './subjectName.interface';
 
@@ -53,7 +55,7 @@ subjectNameSchema.pre('save', async function (next) {
   });
 
   if (isSubjectExists) {
-    throw new Error('This subject already exists');
+    throw new AppError(httpStatus.BAD_REQUEST, 'This subject already exists');
   }
   next();
 });
@@ -65,7 +67,10 @@ subjectNameSchema.pre('findOneAndUpdate', async function (next) {
   const isSubjectExists = await SubjectName.findOne(query);
 
   if (!isSubjectExists) {
-    throw new Error('This Subject name does not exists.');
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      'This Subject name does not exists.',
+    );
   }
   next();
 });
