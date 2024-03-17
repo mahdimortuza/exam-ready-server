@@ -11,4 +11,9 @@ router.post(
   ExamQuizController.createExamQuiz,
 );
 
+router.get('/', ExamQuizController.getAllExamQuiz);
+
+router.get('/:id', ExamQuizController.getSingleExamQuiz);
+router.patch('/:id', ExamQuizController.updateSingleExamQuiz);
+
 export const ExamQuizRoutes = router;
