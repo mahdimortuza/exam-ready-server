@@ -14,7 +14,7 @@ app.use('/api/v1', router);
 
 // server
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello world.');
+  res.send('Hello world. from exam ready server.');
 });
 
 // global error handler
