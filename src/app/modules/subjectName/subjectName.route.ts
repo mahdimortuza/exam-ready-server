@@ -1,14 +1,16 @@
 import express from 'express';
-import validateRequest from '../../middlewares/validateRequest';
 import { SubjectNameController } from './subjectName.controller';
-import createSubjectNameValidationSchema from './subjectName.validation';
 const router = express.Router();
 
 router.post(
   '/create-subject-name',
-  validateRequest(createSubjectNameValidationSchema),
+  // validateRequest(createSubjectNameValidationSchema),
   SubjectNameController.createSubjectName,
 );
+
+router.get('/', SubjectNameController.getAllSubjectNames);
+
+router.get('/:id', SubjectNameController.getSingleSubjectName);
 
 router.patch('/:id', SubjectNameController.updateSubjectName);
 

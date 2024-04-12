@@ -6,6 +6,16 @@ const createSubjectNameIntoDb = async (payload: TSubjectNames) => {
   return result;
 };
 
+const getAllSubjectNamesFromDb = async () => {
+  const result = await SubjectName.find();
+  return result;
+};
+
+const getSingleSubjectNameFromDb = async (id: string) => {
+  const result = await SubjectName.findById({ _id: id });
+  return result;
+};
+
 const updateSubjectNameIntoDb = async (
   id: string,
   payload: Partial<TSubjectNames>,
@@ -18,5 +28,7 @@ const updateSubjectNameIntoDb = async (
 
 export const SubjectNameServices = {
   createSubjectNameIntoDb,
+  getAllSubjectNamesFromDb,
+  getSingleSubjectNameFromDb,
   updateSubjectNameIntoDb,
 };

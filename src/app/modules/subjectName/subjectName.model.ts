@@ -41,13 +41,6 @@ subjectNameSchema.pre('aggregate', function (next) {
   next();
 });
 
-// subjectNameSchema.statics.isSubjectNameExists = async function (
-//   subjectName: string,
-// ) {
-//   const existingSubjectName = await SubjectName.findOne({ subjectName });
-//   return existingSubjectName;
-// };
-
 // preventing duplication
 subjectNameSchema.pre('save', async function (next) {
   const isSubjectExists = await SubjectName.findOne({
