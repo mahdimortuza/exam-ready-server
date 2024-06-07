@@ -26,21 +26,22 @@ const submitAnswers = async (quizId: string, answers: string | any[]) => {
   let correctAnswers = 0;
   let incorrectAnswers = 0;
   let totalScore = 0;
-  let negativeMarks = 0;
+  let negativeScore = 0;
 
   for (const userAnswer of answers) {
     const question = await ExamQuiz.findById(userAnswer.questionId).exec();
     if (question) {
       if (question.correctOption === userAnswer.answer) {
         correctAnswers++;
-        totalScore += 1; // Add 1 mark for correct answer
+        totalScore += 1;
       } else {
         incorrectAnswers++;
-        totalScore -= 0.5; // Deduct 0.5 marks for incorrect answer
-        negativeMarks += 0.5; // Track negative marks
+        totalScore -= 0.5;
+        negativeScore += 0.5;
       }
     }
   }
+
   // Generate the result
   const totalQuestions = answers.length;
   const result = {
@@ -48,9 +49,10 @@ const submitAnswers = async (quizId: string, answers: string | any[]) => {
     incorrectAnswers,
     totalQuestions,
     totalScore,
-    negativeMarks,
+    negativeScore,
     scorePercentage: (totalScore / totalQuestions) * 100,
   };
+
   return result;
 };
 

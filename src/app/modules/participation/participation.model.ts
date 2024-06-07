@@ -9,6 +9,7 @@ const participationSchema = new Schema({
       answer: { type: String, required: true },
     },
   ],
+  totalScore: { type: Number, default: 0 },
 });
 
 export const Participation = model<IParticipation>(
