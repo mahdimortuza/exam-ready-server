@@ -55,7 +55,8 @@ import { Participation } from './participation.model';
 //   return result;
 // };
 
-const submitAnswers = async (userId: string, answers: string | any[]) => {
+const submitAnswers = async (answers: string | any[], studentId: string) => {
+  console.log(studentId);
   // Validate input
   if (!answers) {
     throw new AppError(httpStatus.NOT_FOUND, 'Invalid input.');
@@ -89,7 +90,7 @@ const submitAnswers = async (userId: string, answers: string | any[]) => {
 
   // Generate the result
   const totalQuestions = answers.length;
-  const subTotal = {
+  const result = {
     correctAnswers,
     incorrectAnswers,
     totalQuestions,
@@ -97,15 +98,18 @@ const submitAnswers = async (userId: string, answers: string | any[]) => {
     negativeScore,
     scorePercentage: (totalScore / totalQuestions) * 100,
   };
-  const participatedExam = await Participation.create({ userId, answers });
-
-  const result = {
+  const participatedExam = await Participation.create({
+    studentId,
+    answers,
+    correctAnswers,
+    incorrectAnswers,
+    totalQuestions,
     totalScore,
-    participatedExam,
-  };
+    negativeScore,
+  });
+  console.log(participatedExam);
 
-  console.log(result);
-  return subTotal;
+  return result;
 };
 
 const getUserResults = async (userId: string, quizId: string) => {

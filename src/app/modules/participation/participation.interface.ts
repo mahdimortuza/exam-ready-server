@@ -1,7 +1,11 @@
-import mongoose from 'mongoose';
+import { Types } from 'mongoose';
 
 export interface IParticipation extends Document {
-  userId: mongoose.Schema.Types.ObjectId;
-  questions: { questionId: mongoose.Schema.Types.ObjectId; answer: string }[];
+  studentId: Types.ObjectId;
+  questions: { questionId: Types.ObjectId; answer: string }[];
+  correctAnswers: number;
+  incorrectAnswers: number;
+  totalQuestions: number;
   totalScore: number;
+  negativeScore: number;
 }

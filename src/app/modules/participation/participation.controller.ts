@@ -30,9 +30,8 @@ import { ParticipationServices } from './participation.service';
 // });
 
 const submitAnswers = catchAsync(async (req, res) => {
-  const { answers, userId } = req.body;
-
-  const result = await ParticipationServices.submitAnswers(answers, userId);
+  const { answers, studentId } = req.body;
+  const result = await ParticipationServices.submitAnswers(answers, studentId);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
