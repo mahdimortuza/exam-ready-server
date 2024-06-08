@@ -59,24 +59,7 @@ const submitAnswers = async (answers: string | any[], studentId: string) => {
   return result;
 };
 
-const getUserResults = async (userId: string, quizId: string) => {
-  const participation = await Participation.findOne({
-    user: userId,
-    quiz: quizId,
-    completed: true,
-  })
-    .populate('ExamQuiz', 'title')
-    .populate('Student', 'gender');
-
-  if (!participation) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Result not found');
-  }
-
-  return participation;
-};
-
 export const ParticipationServices = {
   // startQuiz,
   submitAnswers,
-  getUserResults,
 };

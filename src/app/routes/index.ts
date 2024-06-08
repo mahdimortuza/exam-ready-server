@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { ExamQuizRoutes } from '../modules/examQuiz/examQuiz.route';
 import { ParticipationRoutes } from '../modules/participation/participation.route';
+import { ResultRoutes } from '../modules/result/result.route';
 import { StudentRoutes } from '../modules/student/student.route';
 import { SubjectNameRoutes } from '../modules/subjectName/subjectName.route';
 import { UserRoutes } from '../modules/user/user.route';
@@ -27,6 +28,10 @@ const moduleRoutes = [
   {
     path: '/participation',
     route: ParticipationRoutes,
+  },
+  {
+    path: '/results',
+    route: ResultRoutes,
   },
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));

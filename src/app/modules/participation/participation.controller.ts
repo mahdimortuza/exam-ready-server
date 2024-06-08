@@ -14,20 +14,7 @@ const submitAnswers = catchAsync(async (req, res) => {
   });
 });
 
-const getResults = catchAsync(async (req, res) => {
-  const { userId, quizId } = req.body;
-
-  const result = await ParticipationServices.getUserResults(userId, quizId);
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Result retrieved successfully',
-    data: result,
-  });
-});
-
 export const ParticipationController = {
   // startQuiz,
   submitAnswers,
-  getResults,
 };
