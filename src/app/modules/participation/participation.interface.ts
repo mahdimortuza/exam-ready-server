@@ -8,4 +8,5 @@ export interface IParticipation extends Document {
   totalQuestions: number;
   totalScore: number;
   negativeScore: number;
+  date: Date;
 }

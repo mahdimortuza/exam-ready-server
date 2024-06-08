@@ -13,6 +13,18 @@ const getAllResults = catchAsync(async (req, res) => {
   });
 });
 
+const getSingleStudentResult = catchAsync(async (req, res) => {
+  const { studentId } = req.params;
+  const result = await ResultServices.getSingleStudentResultFromDb(studentId);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student result is retrieved successfully.',
+    data: result,
+  });
+});
+
 export const ResultController = {
   getAllResults,
+  getSingleStudentResult,
 };
