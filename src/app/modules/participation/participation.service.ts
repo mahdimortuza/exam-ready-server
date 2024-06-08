@@ -4,59 +4,7 @@ import { AppError } from '../../errors/AppError';
 import { ExamQuiz } from '../examQuiz/examQuiz.model';
 import { Participation } from './participation.model';
 
-// const startQuiz = async (payload: IParticipation) => {
-//   const result = await Participation.create(payload);
-//   return result;
-// };
-
-// const submitAnswers = async (quizId: string, answers: string | any[]) => {
-//   // Validate input
-//   if (!quizId || !answers) {
-//     throw new AppError(httpStatus.NOT_FOUND, 'Invalid input.');
-//   }
-
-//   // Fetch the quiz and its questions
-//   const quiz = await Participation.findById({ _id: quizId }).exec();
-//   if (!quiz) {
-//     throw new AppError(httpStatus.NOT_FOUND, 'Quiz not found');
-//   }
-
-//   // Calculate the results
-//   let correctAnswers = 0;
-//   let incorrectAnswers = 0;
-//   let totalScore = 0;
-//   let negativeScore = 0;
-
-//   for (const userAnswer of answers) {
-//     const question = await ExamQuiz.findById(userAnswer.questionId).exec();
-//     if (question) {
-//       if (question.correctOption === userAnswer.answer) {
-//         correctAnswers++;
-//         totalScore += 1;
-//       } else {
-//         incorrectAnswers++;
-//         totalScore -= 0.5;
-//         negativeScore += 0.5;
-//       }
-//     }
-//   }
-
-//   // Generate the result
-//   const totalQuestions = answers.length;
-//   const result = {
-//     correctAnswers,
-//     incorrectAnswers,
-//     totalQuestions,
-//     totalScore,
-//     negativeScore,
-//     scorePercentage: (totalScore / totalQuestions) * 100,
-//   };
-
-//   return result;
-// };
-
 const submitAnswers = async (answers: string | any[], studentId: string) => {
-  console.log(studentId);
   // Validate input
   if (!answers) {
     throw new AppError(httpStatus.NOT_FOUND, 'Invalid input.');
@@ -98,7 +46,7 @@ const submitAnswers = async (answers: string | any[], studentId: string) => {
     negativeScore,
     scorePercentage: (totalScore / totalQuestions) * 100,
   };
-  const participatedExam = await Participation.create({
+  await Participation.create({
     studentId,
     answers,
     correctAnswers,
@@ -107,7 +55,6 @@ const submitAnswers = async (answers: string | any[], studentId: string) => {
     totalScore,
     negativeScore,
   });
-  console.log(participatedExam);
 
   return result;
 };

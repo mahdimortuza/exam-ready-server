@@ -12,7 +12,7 @@ export type TStudent = {
   gender: 'male' | 'female';
   email: string;
   contactNo?: string;
-  profileImage?: string;
+  collage: string;
   isDeleted: boolean;
 };
 

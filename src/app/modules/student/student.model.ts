@@ -41,7 +41,7 @@ const studentSchema = new Schema<TStudent, StudentModel>(
       type: String,
       trim: true,
     },
-    profileImage: {
+    collage: {
       type: String,
     },
 
