@@ -3,6 +3,16 @@ import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { ParticipationServices } from './participation.service';
 
+const startExam = catchAsync(async (req, res) => {
+  const result = await ParticipationServices.startExam();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Quiz started successfully',
+    data: result,
+  });
+});
+
 const submitAnswers = catchAsync(async (req, res) => {
   const { answers, studentId } = req.body;
   const result = await ParticipationServices.submitAnswers(answers, studentId);
@@ -15,6 +25,6 @@ const submitAnswers = catchAsync(async (req, res) => {
 });
 
 export const ParticipationController = {
-  // startQuiz,
+  startExam,
   submitAnswers,
 };

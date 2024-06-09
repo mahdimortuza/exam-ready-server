@@ -4,6 +4,13 @@ import { AppError } from '../../errors/AppError';
 import { ExamQuiz } from '../examQuiz/examQuiz.model';
 import { Participation } from './participation.model';
 
+const startExam = async () => {
+  const allQuestions = await ExamQuiz.find();
+  const shuffledQuestions = allQuestions.sort(() => 0.5 - Math.random());
+  const result = shuffledQuestions.slice(0, 5);
+  return result;
+};
+
 const submitAnswers = async (answers: string | any[], studentId: string) => {
   // Validate input
   if (!answers) {
@@ -60,6 +67,6 @@ const submitAnswers = async (answers: string | any[], studentId: string) => {
 };
 
 export const ParticipationServices = {
-  // startQuiz,
+  startExam,
   submitAnswers,
 };
