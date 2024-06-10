@@ -12,10 +12,16 @@ app.use(cors());
 // application routes
 app.use('/api/v1', router);
 
-// server
-app.get('/', (req: Request, res: Response) => {
+const test = async (req: Request, res: Response) => {
   res.send('Hello world. from exam ready server.');
-});
+};
+// server
+app.get('/', test);
+
+// // server
+// app.get('/', (req: Request, res: Response) => {
+//   res.send('Hello world. from exam ready server.');
+// });
 
 // global error handler
 app.use(globalErrorHandler);
