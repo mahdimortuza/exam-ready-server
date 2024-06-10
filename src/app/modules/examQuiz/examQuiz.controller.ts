@@ -15,7 +15,7 @@ const createExamQuiz = catchAsync(async (req, res) => {
 });
 
 const getAllExamQuiz = catchAsync(async (req, res) => {
-  const result = await ExamQuizServices.getAllExamQuizzesFromDb();
+  const result = await ExamQuizServices.getAllExamQuizzesFromDb(req.query);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

@@ -7,7 +7,7 @@ const createSubjectNameIntoDb = async (payload: TSubjectNames) => {
 };
 
 const getAllSubjectNamesFromDb = async () => {
-  const result = await SubjectName.find();
+  const result = await SubjectName.find().populate('createdBy');
   return result;
 };
 

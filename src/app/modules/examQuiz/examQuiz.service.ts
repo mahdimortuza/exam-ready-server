@@ -1,3 +1,5 @@
+import QueryBuilder from '../../builder/QueryBuilder';
+import { quizSearchableFields } from './examQuiz.constant';
 import { TExamQuiz } from './examQuiz.interface';
 import { ExamQuiz } from './examQuiz.model';
 
@@ -6,10 +8,18 @@ const createExamQuizIntoDb = async (examQuizData: TExamQuiz) => {
   return result;
 };
 
-const getAllExamQuizzesFromDb = async () => {
-  const result = await ExamQuiz.find()
-    .populate('subjectName')
-    .populate('createdBy');
+const getAllExamQuizzesFromDb = async (query: Record<string, unknown>) => {
+  const quizQuery = new QueryBuilder(
+    ExamQuiz.find().populate('subjectName').populate('createdBy'),
+    query,
+  )
+    .search(quizSearchableFields)
+    .filter()
+    .sort()
+    .paginate()
+    .fields();
+
+  const result = await quizQuery.modelQuery;
   return result;
 };
 

@@ -3,9 +3,10 @@ import { AppError } from '../../errors/AppError';
 import { Participation } from '../participation/participation.model';
 
 const getAllResultsFromDb = async () => {
-  const result = await Participation.find();
+  const result = await Participation.find().populate('studentId');
   return result;
 };
+
 const getSingleStudentAllResultFromDb = async (studentId: string) => {
   const result = await Participation.find({ studentId });
   if (!result || result.length === 0) {
