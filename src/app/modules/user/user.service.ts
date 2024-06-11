@@ -17,6 +17,9 @@ const createStudentIntoDb = async (password: string, payload: TStudent) => {
   //   set student role
   userData.role = 'student';
 
+  // set student email
+  userData.email = payload.email;
+
   const session = await mongoose.startSession();
   try {
     await session.startTransaction();
