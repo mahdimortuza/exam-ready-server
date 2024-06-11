@@ -1,15 +1,15 @@
 /* eslint-disable no-unused-vars */
 import { Model, Types } from 'mongoose';
 
-export type TStudentName = {
+export type TStudentPlusName = {
   firstName: string;
   lastName: string;
 };
 
-export type TStudent = {
+export type TStudentPlus = {
   user: Types.ObjectId;
   password: string;
-  name: TStudentName;
+  name: TStudentPlusName;
   gender: 'male' | 'female';
   email: string;
   contactNo?: string;
@@ -18,6 +18,6 @@ export type TStudent = {
 };
 
 //for creating static
-export interface StudentModel extends Model<TStudent> {
-  isStudentExists(email: string): Promise<TStudent | null>;
+export interface StudentPlusModel extends Model<TStudentPlus> {
+  isStudentPlusExists(email: string): Promise<TStudentPlus | null>;
 }

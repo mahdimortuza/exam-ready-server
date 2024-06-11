@@ -11,4 +11,6 @@ router.post(
   UserController.createStudent,
 );
 
+router.post('/create-normal-user', UserController.createStudent);
+
 export const UserRoutes = router;
