@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { AuthRoutes } from '../modules/auth/auth.route';
 import { ExamQuizRoutes } from '../modules/examQuiz/examQuiz.route';
 import { ParticipationRoutes } from '../modules/participation/participation.route';
 import { ResultRoutes } from '../modules/result/result.route';
@@ -32,6 +33,10 @@ const moduleRoutes = [
   {
     path: '/results',
     route: ResultRoutes,
+  },
+  {
+    path: '/auth',
+    route: AuthRoutes,
   },
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
