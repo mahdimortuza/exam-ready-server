@@ -14,7 +14,11 @@ router.post(
   UserController.createStudent,
 );
 
-router.post('/create-student-plus', UserController.createStudentPlus);
+router.post(
+  '/create-student-plus',
+  auth(USER_ROLE.admin),
+  UserController.createStudentPlus,
+);
 
 router.post('/create-admin', UserController.createAdmin);
 
