@@ -8,10 +8,10 @@ const createFullNameValidationSchema = z.object({
     .string()
     .max(12, { message: 'Last name can not be more then 12 characters' }),
 });
-export const createStudentValidationSchema = z.object({
+export const createNormalUserValidationSchema = z.object({
   body: z.object({
     password: z.string(),
-    student: z.object({
+    normalUser: z.object({
       name: createFullNameValidationSchema,
       gender: z.enum(['male', 'female']),
       email: z.string().email(),
@@ -45,6 +45,6 @@ export const updateStudentValidationSchema = z.object({
 });
 
 export const studentValidations = {
-  createStudentValidationSchema,
+  createNormalUserValidationSchema,
   updateFullNameValidationSchema,
 };

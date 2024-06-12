@@ -11,6 +11,10 @@ router.post(
   UserController.createStudent,
 );
 
-router.post('/create-normal-user', UserController.createStudent);
+router.post('/create-student-plus', UserController.createStudentPlus);
+
+router.post('/create-admin', UserController.createAdmin);
+
+router.post('/create-normal-user', UserController.createNormalUser);
 
 export const UserRoutes = router;
