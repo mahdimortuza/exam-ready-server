@@ -5,6 +5,7 @@ import config from '../../config';
 import { AppError } from '../../errors/AppError';
 import { User } from '../user/user.model';
 import { TLoginUser } from './auth.interface';
+import { createToken } from './auth.utils';
 
 const loginUser = async (payload: TLoginUser) => {
   // checking if user exists
@@ -39,15 +40,21 @@ const loginUser = async (payload: TLoginUser) => {
     role: user.role,
   };
 
-  const accessToken = jwt.sign(
+  const accessToken = createToken(
     jwtPayload,
-
     config.jwt_access_secret as string,
-    { expiresIn: '10d' },
+    config.jwt_access_expires_in as string,
+  );
+
+  const refreshToken = createToken(
+    jwtPayload,
+    config.jwt_refresh_secret as string,
+    config.jwt_refresh_expires_in as string,
   );
 
   return {
     accessToken,
+    refreshToken,
   };
 };
 
@@ -103,7 +110,63 @@ const changePassword = async (
   );
   return null;
 };
+
+const refreshToken = async (token: string) => {
+  // if the token is valid
+  const decoded = jwt.verify(
+    token,
+    config.jwt_refresh_secret as string,
+  ) as JwtPayload;
+
+  const { email, iat } = decoded;
+
+  // checking if user exists
+  const user = await User.isUserExistsByEmail(email);
+
+  if (!user) {
+    throw new AppError(httpStatus.NOT_FOUND, 'This user is not found.');
+  }
+
+  // checking if user exists
+  const isUserDeleted = user?.isDeleted;
+
+  if (isUserDeleted) {
+    throw new AppError(httpStatus.FORBIDDEN, 'This user is deleted.');
+  }
+
+  // checking if user is blocked
+  const userStatus = user?.status;
+
+  if (userStatus === 'blocked') {
+    throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked.');
+  }
+
+  if (
+    user.passwordChangedAt &&
+    User.isJWTIssuedBeforePasswordChanged(user.passwordChangedAt, iat as number)
+  ) {
+    throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized.');
+  }
+
+  // create token and send to the client
+  const jwtPayload = {
+    email: user.email,
+    role: user.role,
+  };
+
+  const accessToken = createToken(
+    jwtPayload,
+    config.jwt_access_secret as string,
+    config.jwt_access_expires_in as string,
+  );
+
+  return {
+    accessToken,
+  };
+};
+
 export const AuthServices = {
   loginUser,
   changePassword,
+  refreshToken,
 };
