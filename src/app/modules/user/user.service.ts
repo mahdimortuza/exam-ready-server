@@ -71,7 +71,6 @@ const createStudentPlusIntoDb = async (
   //   set student role
   userData.role = 'studentPlus';
 
-  // set student email
   userData.email = payload.email;
 
   const session = await mongoose.startSession();
