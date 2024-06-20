@@ -24,4 +24,15 @@ router.post('/create-admin', UserController.createAdmin);
 
 router.post('/create-normal-user', UserController.createNormalUser);
 
+router.get(
+  '/me',
+  auth(
+    USER_ROLE.admin,
+    USER_ROLE.studentPlus,
+    USER_ROLE.student,
+    USER_ROLE.normalUser,
+  ),
+  UserController.getMe,
+);
+
 export const UserRoutes = router;

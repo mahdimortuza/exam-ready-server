@@ -9,11 +9,9 @@ const router = express.Router();
 
 // will call controller
 router.get('/', auth(USER_ROLE.admin), StudentControllers.getAllStudents);
-router.get(
-  '/:id',
-  auth(USER_ROLE.admin, USER_ROLE.student),
-  StudentControllers.getSingleStudent,
-);
+
+router.get('/:id', auth(USER_ROLE.admin), StudentControllers.getSingleStudent);
+
 router.patch(
   '/:id',
   auth(USER_ROLE.student),
