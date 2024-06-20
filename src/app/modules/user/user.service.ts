@@ -4,7 +4,6 @@ import config from '../../config';
 import { AppError } from '../../errors/AppError';
 import { TAdmin } from '../admin/admin.interface';
 import { Admin } from '../admin/admin.model';
-import { verifyToken } from '../auth/auth.utils';
 import { TNormalUser } from '../normalUser/normalUser.interface';
 import { NormalUser } from '../normalUser/normalUser.model';
 import { TStudent } from '../student/student.interface';
@@ -199,23 +198,21 @@ const createNormalUserIntoDb = async (
   }
 };
 
-const getMe = async (token: string) => {
-  const decoded = verifyToken(token, config.jwt_access_secret as string);
-
-  const { email, role } = decoded;
+const getMe = async (email: string, role: string) => {
+  // const decoded = verifyToken(token, config.jwt_access_secret as string);
 
   let result = null;
   if (role === 'admin') {
-    result = await Admin.findOne({ email: email });
+    result = await Admin.findOne({ email: email }).populate('user');
   }
   if (role === 'studentPlus') {
-    result = await StudentPlus.findOne({ email: email });
+    result = await StudentPlus.findOne({ email: email }).populate('user');
   }
   if (role === 'student') {
-    result = await Student.findOne({ email: email });
+    result = await Student.findOne({ email: email }).populate('user');
   }
   if (role === 'normalUser') {
-    result = await NormalUser.findOne({ email: email });
+    result = await NormalUser.findOne({ email: email }).populate('user');
   }
 
   return result;
