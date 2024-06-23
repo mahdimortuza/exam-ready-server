@@ -6,3 +6,5 @@ export const USER_ROLE = {
   studentPlus: 'studentPlus',
   admin: 'admin',
 } as const;
+
+export const StudentRole = ['normalUser', 'student', 'studentPlus'];

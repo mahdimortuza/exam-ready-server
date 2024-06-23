@@ -71,10 +71,34 @@ const getMe = catchAsync(async (req, res) => {
   });
 });
 
+const changeStatus = catchAsync(async (req, res) => {
+  const id = req.params.id;
+  const result = await UserService.changeStatus(id, req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User status is updated successfully',
+    data: result,
+  });
+});
+
+const changeStudentRole = catchAsync(async (req, res) => {
+  const id = req.params.id;
+  const result = await UserService.changeStudentRole(id, req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student role is updated successfully',
+    data: result,
+  });
+});
+
 export const UserController = {
   createStudent,
   createStudentPlus,
   createAdmin,
   createNormalUser,
   getMe,
+  changeStatus,
+  changeStudentRole,
 };
