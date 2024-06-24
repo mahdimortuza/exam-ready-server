@@ -19,8 +19,12 @@ const getAllExamQuizzesFromDb = async (query: Record<string, unknown>) => {
     .paginate()
     .fields();
 
+  const meta = await quizQuery.countTotal();
   const result = await quizQuery.modelQuery;
-  return result;
+  return {
+    meta,
+    result,
+  };
 };
 
 const getSingleExamQuizFromDb = async (id: string) => {

@@ -1,10 +1,11 @@
 export const UserStatus = ['in-progress', 'blocked'];
 
 export const USER_ROLE = {
-  normalUser: 'normalUser',
-  student: 'student',
-  studentPlus: 'studentPlus',
+  superAdmin: 'superAdmin',
   admin: 'admin',
+  studentPlus: 'studentPlus',
+  student: 'student',
+  normalUser: 'normalUser',
 } as const;
 
-export const StudentRole = ['normalUser', 'student', 'studentPlus'];
+export const StudentRole = ['studentPlus', 'student', 'normalUser'];

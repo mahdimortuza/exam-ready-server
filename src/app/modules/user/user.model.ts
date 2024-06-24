@@ -23,7 +23,7 @@ const userSchema = new Schema<TUser, UserModel>(
     },
     role: {
       type: String,
-      enum: ['admin', 'studentPlus', 'student', 'normalUser'],
+      enum: ['superAdmin', 'admin', 'studentPlus', 'student', 'normalUser'],
     },
     isPaid: {
       type: String,

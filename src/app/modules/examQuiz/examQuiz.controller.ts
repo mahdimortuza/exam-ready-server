@@ -20,7 +20,8 @@ const getAllExamQuiz = catchAsync(async (req, res) => {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Exam quizzes are retrieved successfully',
-    data: result,
+    meta: result.meta,
+    data: result.result,
   });
 });
 
