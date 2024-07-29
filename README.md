@@ -32,7 +32,7 @@ This application is built using TypeScript, Node.js, Express.js, and MongoDB. Th
 4. Set up the environment variables (see [Environment Variables](#environment-variables))
 5. Start the server
    ```bash
-   npm start
+   npm run start:dev
    ```
 
 ## Scripts
