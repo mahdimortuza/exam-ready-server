@@ -8,10 +8,9 @@ This application is built using TypeScript, Node.js, Express.js, and MongoDB. Th
 ## Table of Contents
 
 - [Installation](#installation)
-- [Usage](#usage)
+- [Scripts](#scripts)
 - [Environment Variables](#environment-variables)
 - [API Documentation](#api-documentation)
-- [Scripts](#scripts)
 - [Tests](#tests)
 - [Contributing](#contributing)
 - [License](#license)
@@ -36,14 +35,38 @@ This application is built using TypeScript, Node.js, Express.js, and MongoDB. Th
    npm start
    ```
 
-## Usage
+## Scripts
 
-### Running the server
+## Running the server
 
-To start the server in development mode, use:
+### To build the server, use:
+
+```bash
+npm run build
+```
+
+### To start the server in development mode, use:
 
 ```bash
 npm run start:dev
+```
+
+### To start the server in production mode, use:
+
+```bash
+npm run start:prod
+```
+
+### To fix code using ESlint, use:
+
+```bash
+npm run lint:fix
+```
+
+### To fix code using Prettier, use:
+
+```bash
+npm run prettier:fix
 ```
 
 ## Environment Variables
@@ -623,12 +646,29 @@ npm run start:dev
 
     - Description: Gets single student single result(only user, student and studentPlus can access).
 
-## Dependencies:
+# Dependencies:
 
 - `bcrypt`: Library for hashing passwords.
 - `cors`: Express middleware for enabling CORS.
 - `dotenv`: Loads environment variables from .env file.
 - `express`: Web framework for Node.js.
 - `jsonwebtoken`: Library for generating and verifying JWT tokens.
-- `mongodb`: MongoDB driver for Node.js.
-- `nodemon`: Utility for automatically restarting the server during development.
+- `mongoose`: MongoDB driver for Node.js.
+- `cookie-parser`: To send token to client.
+- `http-status`: HTTP status sends status code in response.
+- `nodemailer`: Nodemailer is used to send email using SMTP.
+- `zod`: Zod is a JavaScript validation library.
+
+# Tests
+
+- No test cases are written yet.
+
+# Contributing
+
+- Contribution policy will be provided letter.
+
+# License
+
+Copyright (c) 2024, Mahdi Mortuza
+
+All rights reserved. This software and associated documentation files may not be used, copied, modified, merged, published, distributed, sublicensed, and/or sold, in any manner, without the prior written permission of the copyright owner.
