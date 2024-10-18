@@ -1,0 +1,27 @@
+import { Schema, model } from 'mongoose';
+import { IParticipation } from './participation.interface';
+
+const participationSchema = new Schema({
+  studentEmail: { type: String, required: true },
+  answers: [
+    {
+      questionId: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'ExamQuiz',
+      },
+      answer: { type: String, required: true },
+    },
+  ],
+  correctAnswers: { type: Number, default: 0 },
+  incorrectAnswers: { type: Number, default: 0 },
+  totalQuestions: { type: Number, default: 0 },
+  totalScore: { type: Number, default: 0 },
+  negativeScore: { type: Number, default: 0 },
+  date: { type: Date, default: Date.now },
+});
+
+export const Participation = model<IParticipation>(
+  'Participation',
+  participationSchema,
+);
