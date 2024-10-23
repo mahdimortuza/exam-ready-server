@@ -19,6 +19,7 @@ router.post('/create-admin', UserController.createAdmin);
 router.get(
   '/me',
   auth(
+    USER_ROLE.super_admin,
     USER_ROLE.admin,
     USER_ROLE.student_plus,
     USER_ROLE.student,

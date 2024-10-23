@@ -5,9 +5,8 @@ export type TAdmin = {
   user: Types.ObjectId;
   password: string;
   name: string;
-  gender: 'male' | 'female';
   email: string;
-  contactNo?: string;
+  image: string;
   isDeleted: boolean;
 };
 

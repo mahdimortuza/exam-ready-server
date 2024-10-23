@@ -16,19 +16,13 @@ const adminSchema = new Schema<TAdmin>(
       type: String,
       required: [true, 'Name is required'],
     },
-    gender: {
-      type: String,
-      enum: ['male', 'female'],
-      required: true,
-    },
     email: {
       type: String,
       trim: true,
       required: [true, 'Email is required'],
     },
-    contactNo: {
+    image: {
       type: String,
-      trim: true,
     },
     isDeleted: {
       type: Boolean,

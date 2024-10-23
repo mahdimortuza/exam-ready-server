@@ -26,13 +26,13 @@ const createAdminIntoDb = async (password: string, payload: TAdmin) => {
   try {
     session.startTransaction();
     // create a user (transaction - 1)
-    const newUser = await User.create([userData], { session });
 
     // Check if email already exists
     const existingUser = await User.findOne({ email: payload.email });
     if (existingUser) {
       throw new AppError(httpStatus.BAD_REQUEST, 'This email is already used.');
     }
+    const newUser = await User.create([userData], { session });
 
     // create a student
     if (!newUser.length) {
@@ -42,7 +42,7 @@ const createAdminIntoDb = async (password: string, payload: TAdmin) => {
     // set id, _id as user
     payload.user = newUser[0]._id; // reference ID
 
-    // create a student (transaction - 2)
+    // create an admin (transaction - 2)
     const newAdmin = await Admin.create([payload], { session });
 
     if (!newAdmin.length) {
@@ -121,14 +121,17 @@ const createStudentIntoDb = async (password: string, payload: TStudent) => {
 };
 
 const getMe = async (email: string, role: string) => {
-  // const decoded = verifyToken(token, config.jwt_access_secret as string);
+  let result;
 
-  let result = null;
   if (role === 'admin') {
-    result = await Admin.findOne({ email: email }).populate('user');
+    result = await Admin.findOne({ email }).populate('user');
+  } else if (role === 'student_plus' || role === 'student' || role === 'user') {
+    result = await Student.findOne({ email }).populate('user');
   }
-  if (role === 'student') {
-    result = await Student.findOne({ email: email }).populate('user');
+
+  if (!result) {
+    // Return a default value if no user is found
+    return { message: 'No user found', email, role };
   }
 
   return result;
