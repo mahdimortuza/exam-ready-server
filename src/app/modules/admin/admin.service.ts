@@ -20,8 +20,9 @@ const getAllAdminsFromDb = async (query: Record<string, unknown>) => {
 };
 
 const getSingleAdminFromDb = async (id: string) => {
-  // const result = await Admin.findOne({ id });
-  const result = await Admin.aggregate([{ $match: { id: id } }]);
+  // console.log(id);
+  const result = await Admin.findById(id).populate('user');
+  // const result = await Admin.aggregate([{ $match: { id: id } }]);
   return result;
 };
 

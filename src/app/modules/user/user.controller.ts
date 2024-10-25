@@ -29,7 +29,7 @@ const getMe = catchAsync(async (req, res) => {
   const { email, role } = req.user;
 
   const result = await UserService.getMe(email, role);
-  console.log(result);
+  // console.log(result);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -38,10 +38,22 @@ const getMe = catchAsync(async (req, res) => {
   });
 });
 
+const changePaymentStatus = catchAsync(async (req, res) => {
+  const id = req.params.id;
+  const result = await UserService.changePaymentStatus(id, req.body);
+  // console.log(result);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Payment status is updated successfully',
+    data: result,
+  });
+});
+
 const changeStatus = catchAsync(async (req, res) => {
   const id = req.params.id;
   const result = await UserService.changeStatus(id, req.body);
-  console.log(result);
+  // console.log(result);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -53,7 +65,7 @@ const changeStatus = catchAsync(async (req, res) => {
 const changeStudentRole = catchAsync(async (req, res) => {
   const id = req.params.id;
   const result = await UserService.changeStudentRole(id, req.body);
-  console.log(result);
+  // console.log(result);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -66,6 +78,7 @@ export const UserController = {
   createStudent,
   createAdmin,
   getMe,
+  changePaymentStatus,
   changeStatus,
   changeStudentRole,
 };

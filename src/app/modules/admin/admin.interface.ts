@@ -7,6 +7,7 @@ export type TAdmin = {
   name: string;
   email: string;
   image: string;
+  contactNo: string;
   isDeleted: boolean;
 };
 

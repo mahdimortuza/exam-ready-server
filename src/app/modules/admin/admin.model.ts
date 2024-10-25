@@ -24,6 +24,11 @@ const adminSchema = new Schema<TAdmin>(
     image: {
       type: String,
     },
+    contactNo: {
+      type: String,
+      trim: true,
+      required: [true, 'Contact number is required'],
+    },
     isDeleted: {
       type: Boolean,
       default: false,

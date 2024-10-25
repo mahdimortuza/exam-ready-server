@@ -29,7 +29,10 @@ router.get(
 );
 
 // change status for the students either it is blocked or in-progress
-router.post(
+router.patch('/change-payment-status/:id', UserController.changePaymentStatus);
+
+// change status for the students either it is blocked or in-progress
+router.patch(
   '/change-status/:id',
   // auth(USER_ROLE.admin),
   validateRequest(UserValidation.changeStatusValidationSchema),
@@ -37,7 +40,7 @@ router.post(
 );
 
 // change user role of the users user/student/studentPlus/admin
-router.post(
+router.patch(
   '/change-role/:id',
   // auth(USER_ROLE.admin),
   validateRequest(UserValidation.changeStudentRoleValidationSchema),

@@ -137,6 +137,11 @@ const getMe = async (email: string, role: string) => {
   return result;
 };
 
+const changePaymentStatus = async (id: string, payload: { status: string }) => {
+  const result = await User.findByIdAndUpdate(id, payload, { new: true });
+  return result;
+};
+
 const changeStatus = async (id: string, payload: { status: string }) => {
   const result = await User.findByIdAndUpdate(id, payload, { new: true });
   return result;
@@ -150,6 +155,7 @@ export const UserService = {
   createAdminIntoDb,
   createStudentIntoDb,
   getMe,
+  changePaymentStatus,
   changeStatus,
   changeStudentRole,
 };
