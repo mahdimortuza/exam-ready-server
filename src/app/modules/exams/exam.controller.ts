@@ -60,42 +60,10 @@ const updateStatus = catchAsync(async (req, res) => {
   });
 });
 
-const examSubmission = catchAsync(async (req, res) => {
-  const { answers, studentEmail, examId } = req.body;
-
-  console.log({ answers, studentEmail, examId });
-
-  const result = await ExamServices.examSubmissionOnDb(
-    answers,
-    studentEmail,
-    examId,
-  );
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Exam is submitted successfully',
-    data: result,
-  });
-});
-
-const retrieveAllExamResult = catchAsync(async (req, res) => {
-  const result = await ExamServices.retrieveAllExamResultsFromDb(req.query);
-
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'All Exam results are retrieved successfully',
-    meta: result.meta,
-    data: result.result,
-  });
-});
-
 export const ExamController = {
   createExam,
   getAllExams,
   getSingleExams,
   updateExam,
   updateStatus,
-  examSubmission,
-  retrieveAllExamResult,
 };

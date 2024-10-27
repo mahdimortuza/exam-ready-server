@@ -3,6 +3,7 @@ import { AdminRoutes } from '../modules/admin/admin.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { ExamQuizRoutes } from '../modules/examQuiz/examQuiz.route';
 import { ExamRoutes } from '../modules/exams/exam.route';
+import { ExamSubmissionRoutes } from '../modules/examSubmission/examSubmission.route';
 import { ParticipationRoutes } from '../modules/participation/participation.route';
 import { ResultRoutes } from '../modules/result/result.route';
 import { StudentRoutes } from '../modules/students/student.route';
@@ -37,6 +38,11 @@ const moduleRoutes = [
     path: '/exam',
     route: ExamRoutes,
   },
+  {
+    path: '/exam-submit',
+    route: ExamSubmissionRoutes,
+  },
+
   {
     path: '/participation',
     route: ParticipationRoutes,

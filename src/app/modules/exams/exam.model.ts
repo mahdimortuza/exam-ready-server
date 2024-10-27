@@ -1,12 +1,13 @@
 import { model, Schema, Types } from 'mongoose';
-import { TExam, TExamSubmission } from './exam.interface';
+import { TExam } from './exam.interface';
 
 const examSchema = new Schema<TExam>(
   {
     examName: {
-      type: String,
-      required: [true, 'Exam name is required'],
+      type: String, // Change this line
+      required: [true, 'Exam name is required.'],
     },
+
     createdBy: {
       type: String,
       required: [true, 'Admin email is required'],
@@ -17,7 +18,7 @@ const examSchema = new Schema<TExam>(
       ref: 'ExamQuiz',
       validate: {
         validator: function (value: Types.ObjectId[]) {
-          return value.length === 5;
+          return value.length === 5; // Must have exactly 5 questions
         },
         message: 'Exactly 5 questions are required',
       },
@@ -41,35 +42,8 @@ const examSchema = new Schema<TExam>(
     },
   },
   {
-    timestamps: true,
+    timestamps: true, // Automatically manages createdAt and updatedAt fields
   },
 );
 
 export const Exam = model<TExam>('Exam', examSchema);
-
-// for exam submission schema model
-
-const examSubmissionSchema = new Schema<TExamSubmission>({
-  studentEmail: { type: String, required: true },
-
-  examId: {
-    type: Schema.Types.ObjectId, // Changed to ObjectId to match the interface
-    required: [true, 'Exam id is required.'],
-    // ref: 'Exam',
-  },
-  answers: [
-    {
-      questionId: {
-        type: Schema.Types.ObjectId,
-        required: true,
-        // ref: 'ExamQuiz',
-      },
-      answer: { type: String, required: true },
-    },
-  ],
-});
-
-export const ExamSubmission = model<TExamSubmission>(
-  'ExamSubmission',
-  examSubmissionSchema,
-);
