@@ -1,21 +1,21 @@
-export type TSubjects =
-  | 'banglaLiterature'
-  | 'banglaGrammar'
-  | 'englishLiterature'
-  | 'englishGrammar'
-  | 'gkBangladesh'
-  | 'gkInternational'
-  | 'geographyEnvironment'
-  | 'generalScience'
-  | 'computerICT'
-  | 'mathematics'
-  | 'mentalAbility'
-  | 'ethicsValuesGoodGovernance';
+// export type TSubjects =
+//   | 'banglaLiterature'
+//   | 'banglaGrammar'
+//   | 'englishLiterature'
+//   | 'englishGrammar'
+//   | 'gkBangladesh'
+//   | 'gkInternational'
+//   | 'geographyEnvironment'
+//   | 'generalScience'
+//   | 'computerICT'
+//   | 'mathematics'
+//   | 'mentalAbility'
+//   | 'ethicsValuesGoodGovernance';
 
 import { Model } from 'mongoose';
 
 export type TSubjectNames = {
-  subjectName: TSubjects;
+  subjectName: string;
   isDeleted: boolean;
   createdBy: string;
 };

@@ -1,20 +1,18 @@
 import httpStatus from 'http-status';
 import { Schema, model } from 'mongoose';
 import { AppError } from '../../errors/AppError';
-import { Subjects } from './subjectName.constant';
 import { TSubjectNames } from './subjectName.interface';
 
 const subjectNameSchema = new Schema<TSubjectNames>(
   {
     subjectName: {
       type: String,
-      enum: Subjects,
       required: [true, 'Subject name is required'],
     },
     createdBy: {
       type: String,
       required: [true, 'Admin email is required'],
-      ref: 'Student',
+      // ref: 'Student',
     },
     isDeleted: {
       type: Boolean,

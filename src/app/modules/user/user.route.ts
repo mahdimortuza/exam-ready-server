@@ -35,7 +35,7 @@ router.patch('/change-payment-status/:id', UserController.changePaymentStatus);
 router.patch(
   '/change-status/:id',
   // auth(USER_ROLE.admin),
-  validateRequest(UserValidation.changeStatusValidationSchema),
+  // validateRequest(UserValidation.changeStatusValidationSchema),
   UserController.changeStatus,
 );
 
