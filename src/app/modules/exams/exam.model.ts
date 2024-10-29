@@ -8,6 +8,7 @@ const examSchema = new Schema<TExam>(
       required: [true, 'Exam name is required.'],
     },
 
+    // fdvnfd
     createdBy: {
       type: String,
       required: [true, 'Admin email is required'],
