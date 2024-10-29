@@ -5,6 +5,8 @@ import { ExamServices } from './exam.service';
 
 const createExam = catchAsync(async (req, res) => {
   const quizzes = req.body;
+
+  // console.log(quizzes);
   const result = await ExamServices.createNewExamIntoDb(quizzes);
   sendResponse(res, {
     statusCode: httpStatus.OK,
