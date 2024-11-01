@@ -15,7 +15,7 @@ const startExam = catchAsync(async (req, res) => {
 
 const submitAnswers = catchAsync(async (req, res) => {
   const { answers, studentEmail } = req.body;
-  console.log('Received submission:', req.body);
+  // console.log('Received submission:', req.body);
   const result = await ParticipationServices.submitAnswers(
     answers,
     studentEmail,

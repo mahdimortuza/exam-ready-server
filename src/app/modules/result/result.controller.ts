@@ -4,17 +4,19 @@ import sendResponse from '../../utils/sendResponse';
 import { ResultServices } from './result.service';
 
 const getAllResults = catchAsync(async (req, res) => {
-  const result = await ResultServices.getAllResultsFromDb();
+  const result = await ResultServices.getAllResultsFromDb(req.query);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'All results are retrieved successfully',
-    data: result,
+    meta: result.meta,
+    data: result.result,
   });
 });
 
 const getSingleStudentAllResult = catchAsync(async (req, res) => {
   const { studentEmail } = req.params;
+  // console.log(studentEmail);
   const result =
     await ResultServices.getSingleStudentAllResultFromDb(studentEmail);
   sendResponse(res, {

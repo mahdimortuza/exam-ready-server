@@ -7,7 +7,7 @@ import { Participation } from './participation.model';
 const startExam = async () => {
   const allQuestions = await ExamQuiz.find();
   const shuffledQuestions = allQuestions.sort(() => 0.5 - Math.random());
-  const result = shuffledQuestions.slice(0, 5);
+  const result = shuffledQuestions.slice(0, 40);
   return result;
 };
 

@@ -9,7 +9,7 @@ router.get(
   ResultController.getAllResults,
 );
 router.get(
-  '/:studentId',
+  '/:studentEmail',
   // USER_ROLE.student, USER_ROLE.student_plus),
   ResultController.getSingleStudentAllResult,
 );
