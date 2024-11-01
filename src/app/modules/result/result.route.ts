@@ -14,7 +14,7 @@ router.get(
   ResultController.getSingleStudentAllResult,
 );
 router.get(
-  '/:studentId/:resultId',
+  '/:studentEmail/:resultId',
   // , USER_ROLE.student, USER_ROLE.student_plus),
   ResultController.getSingleStudentSingleResult,
 );

@@ -29,6 +29,7 @@ const getSingleStudentAllResult = catchAsync(async (req, res) => {
 
 const getSingleStudentSingleResult = catchAsync(async (req, res) => {
   const { studentEmail, resultId } = req.params;
+  console.log({ studentEmail, resultId });
   const result = await ResultServices.getSingleStudentSingleResultFromDb(
     studentEmail,
     resultId,
