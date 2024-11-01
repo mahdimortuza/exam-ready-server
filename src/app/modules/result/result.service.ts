@@ -27,8 +27,12 @@ const getSingleStudentSingleResultFromDb = async (
   studentEmail: string,
   resultId: string,
 ) => {
-  const result = await Participation.find({ studentEmail, _id: resultId });
-  if (!result || result.length === 0) {
+  const result = await Participation.findOne({
+    studentEmail,
+    _id: resultId,
+  }).populate('answers.questionId'); // Populate the correct path here
+
+  if (!result) {
     throw new AppError(
       httpStatus.NOT_FOUND,
       'No result found for this student.',
