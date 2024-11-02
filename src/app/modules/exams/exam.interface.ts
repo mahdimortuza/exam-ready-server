@@ -7,5 +7,6 @@ export type TExam = {
   status: 'upcoming' | 'ongoing' | 'finished'; // Status of the exam
   startTime: string; // Start time of the exam
   endTime: string; // End time of the exam
+  examType: 'weakly' | 'daily';
   isDeleted: boolean; // Logical deletion flag
 };

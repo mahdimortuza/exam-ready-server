@@ -41,6 +41,11 @@ const examSchema = new Schema<TExam>(
       type: String,
       required: [true, 'End time is required'],
     },
+    examType: {
+      type: String,
+      enum: ['weakly', 'daily'],
+      required: [true, 'Exam type is required'],
+    },
     isDeleted: {
       type: Boolean,
       default: false,
