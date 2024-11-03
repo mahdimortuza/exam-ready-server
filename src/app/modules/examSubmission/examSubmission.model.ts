@@ -10,6 +10,10 @@ const examSubmissionSchema = new Schema<TExamSubmission>({
     required: [true, 'Exam name is required.'],
     ref: 'Exams',
   },
+  examType: {
+    type: String, // Changed to ObjectId to match the interface
+    required: [true, 'Exam type is required.'],
+  },
   answers: [
     {
       questionId: {

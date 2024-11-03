@@ -15,12 +15,13 @@ const getSingleExams = catchAsync(async (req, res) => {
 });
 
 const examSubmission = catchAsync(async (req, res) => {
-  const { answers, studentEmail, examName } = req.body;
+  const { answers, studentEmail, examName, examType } = req.body;
 
   const result = await ExamSubmissionServices.examSubmissionOnDb(
     answers,
     studentEmail,
     examName,
+    examType,
   );
   sendResponse(res, {
     statusCode: httpStatus.OK,

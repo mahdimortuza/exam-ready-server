@@ -7,6 +7,7 @@ export interface TAnswer {
 
 export interface TExamSubmission {
   examName: Types.ObjectId;
+  examType: string;
   studentEmail: string;
   answers: TAnswer[];
   correctAnswers: number;

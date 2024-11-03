@@ -15,6 +15,7 @@ const examSubmissionOnDb = async (
   answers: string | any[],
   studentEmail: string,
   examName: string,
+  examType: string,
 ) => {
   // Validate input
   if (!answers) {
@@ -59,6 +60,7 @@ const examSubmissionOnDb = async (
   await ExamSubmission.create({
     studentEmail,
     examName,
+    examType,
     answers,
     correctAnswers,
     incorrectAnswers,
@@ -66,6 +68,8 @@ const examSubmissionOnDb = async (
     totalScore,
     negativeScore,
   });
+
+  console.log(examType);
 
   return result;
 };
