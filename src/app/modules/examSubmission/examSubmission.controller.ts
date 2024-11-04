@@ -31,8 +31,8 @@ const examSubmission = catchAsync(async (req, res) => {
   });
 });
 
-const getSubmittedExamResults = catchAsync(async (req, res) => {
-  const result = await ExamSubmissionServices.getSubmittedExamResultsFromDb(
+const getAllSubmittedExamResults = catchAsync(async (req, res) => {
+  const result = await ExamSubmissionServices.getAllSubmittedExamResultsFromDb(
     req.query,
   );
   sendResponse(res, {
@@ -44,8 +44,41 @@ const getSubmittedExamResults = catchAsync(async (req, res) => {
   });
 });
 
+const getSingleStudentAllExamResult = catchAsync(async (req, res) => {
+  const { studentEmail } = req.params;
+  // console.log(studentEmail);
+  const result =
+    await ExamSubmissionServices.getSingleStudentAllExamResultsFromDb(
+      studentEmail,
+    );
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student results are retrieved successfully.',
+    data: result,
+  });
+});
+
+const getSingleStudentSingleExamResult = catchAsync(async (req, res) => {
+  const { studentEmail, resultId } = req.params;
+  // console.log({ studentEmail, resultId });git a
+  const result =
+    await ExamSubmissionServices.getSingleStudentSingleExamResultFromDb(
+      studentEmail,
+      resultId,
+    );
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student result is retrieved successfully.',
+    data: result,
+  });
+});
+
 export const ExamSubmissionController = {
   getSingleExams,
   examSubmission,
-  getSubmittedExamResults,
+  getAllSubmittedExamResults,
+  getSingleStudentAllExamResult,
+  getSingleStudentSingleExamResult,
 };

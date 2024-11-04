@@ -72,15 +72,7 @@ const examSubmissionOnDb = async (
   return result;
 };
 
-// const getAllResultsFromDb = async (query: Record<string, unknown>) => {
-//   const resultQuery = new QueryBuilder(Participation.find(), query);
-
-//   const meta = await resultQuery.countTotal();
-//   const result = await resultQuery.modelQuery;
-//   return { meta, result };
-// };
-
-const getSubmittedExamResultsFromDb = async (
+const getAllSubmittedExamResultsFromDb = async (
   query: Record<string, unknown>,
 ) => {
   // Correct the populate reference to 'questions'
@@ -96,8 +88,44 @@ const getSubmittedExamResultsFromDb = async (
   };
 };
 
+const getSingleStudentAllExamResultsFromDb = async (studentEmail: string) => {
+  const result = await ExamSubmission.find({ studentEmail }).populate(
+    'examName',
+  );
+  // console.log(result);
+  if (!result || result.length === 0) {
+    throw new AppError(
+      httpStatus.NOT_FOUND,
+      'No result found for this student.',
+    );
+  }
+  return result;
+};
+
+const getSingleStudentSingleExamResultFromDb = async (
+  studentEmail: string,
+  resultId: string,
+) => {
+  const result = await ExamSubmission.findOne({
+    studentEmail,
+    _id: resultId,
+  })
+    .populate('answers.questionId')
+    .populate('examName'); // Populate the correct path here
+
+  if (!result) {
+    throw new AppError(
+      httpStatus.NOT_FOUND,
+      'No result found for this student.',
+    );
+  }
+  return result;
+};
+
 export const ExamSubmissionServices = {
   getSingleExamFromDb,
   examSubmissionOnDb,
-  getSubmittedExamResultsFromDb,
+  getAllSubmittedExamResultsFromDb,
+  getSingleStudentAllExamResultsFromDb,
+  getSingleStudentSingleExamResultFromDb,
 };
