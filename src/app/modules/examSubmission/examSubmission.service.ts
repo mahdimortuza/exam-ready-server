@@ -69,18 +69,27 @@ const examSubmissionOnDb = async (
     negativeScore,
   });
 
-  console.log(examType);
-
   return result;
 };
+
+// const getAllResultsFromDb = async (query: Record<string, unknown>) => {
+//   const resultQuery = new QueryBuilder(Participation.find(), query);
+
+//   const meta = await resultQuery.countTotal();
+//   const result = await resultQuery.modelQuery;
+//   return { meta, result };
+// };
 
 const getSubmittedExamResultsFromDb = async (
   query: Record<string, unknown>,
 ) => {
   // Correct the populate reference to 'questions'
-  const examQuery = new QueryBuilder(ExamSubmission.find(), query); // Use 'questions' instead of 'ExamQuiz'
-  const meta = await examQuery.countTotal();
-  const result = await examQuery.modelQuery;
+  const resultQuery = new QueryBuilder(
+    ExamSubmission.find().populate('examName'),
+    query,
+  ); // Use 'questions' instead of 'ExamQuiz'
+  const meta = await resultQuery.countTotal();
+  const result = await resultQuery.modelQuery;
   return {
     meta,
     result,

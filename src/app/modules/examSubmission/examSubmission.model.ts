@@ -8,7 +8,7 @@ const examSubmissionSchema = new Schema<TExamSubmission>({
   examName: {
     type: Schema.Types.ObjectId, // Changed to ObjectId to match the interface
     required: [true, 'Exam name is required.'],
-    ref: 'Exams',
+    ref: 'Exam',
   },
   examType: {
     type: String, // Changed to ObjectId to match the interface
