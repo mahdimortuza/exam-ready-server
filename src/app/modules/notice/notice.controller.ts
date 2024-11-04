@@ -41,7 +41,17 @@ const updateNoticeIntoDb = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Notice name is updated successfully',
+    message: 'Notice is updated successfully',
+    data: result,
+  });
+});
+const deleteNotice = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await NoticeServices.deleteNoticeFromDb(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Notice is deleted successfully',
     data: result,
   });
 });
@@ -51,4 +61,5 @@ export const NoticeController = {
   getAllNotices,
   getSingleNotice,
   updateNoticeIntoDb,
+  deleteNotice,
 };

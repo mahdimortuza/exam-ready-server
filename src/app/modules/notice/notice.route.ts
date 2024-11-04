@@ -9,5 +9,6 @@ router.get('/', NoticeController.getAllNotices);
 router.get('/:id', NoticeController.getSingleNotice);
 
 router.patch('/:id', NoticeController.updateNoticeIntoDb);
+router.delete('/:id', NoticeController.deleteNotice);
 
 export const NoticeRoutes = router;

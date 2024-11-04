@@ -23,9 +23,15 @@ const updateNoticeIntoDb = async (id: string, payload: Partial<TNotice>) => {
   return result;
 };
 
+const deleteNoticeFromDb = async (id: string) => {
+  const result = await Notice.findOneAndDelete({ _id: id });
+  return result;
+};
+
 export const NoticeServices = {
   createNoticeIntoDb,
   getAllNoticesFromDb,
   getSingleNoticeFromDb,
   updateNoticeIntoDb,
+  deleteNoticeFromDb,
 };
