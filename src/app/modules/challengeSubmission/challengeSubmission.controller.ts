@@ -28,6 +28,7 @@ const getAllChallengeSubmission = catchAsync(async (req, res) => {
 
 const getStudentChallengeSubmission = catchAsync(async (req, res) => {
   const { createdBy } = req.params;
+  console.log(createdBy);
   const result =
     await ChallengeSubmissionServices.getStudentChallengeSubmissionFromDb(
       createdBy,

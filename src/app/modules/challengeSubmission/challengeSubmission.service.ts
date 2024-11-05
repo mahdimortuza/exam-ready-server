@@ -14,7 +14,9 @@ const getAllChallengeSubmissionFromDb = async () => {
 };
 
 const getStudentChallengeSubmissionFromDb = async (createdBy: string) => {
-  const result = await ChallengeSubmission.findById({ createdBy: createdBy });
+  const result = await ChallengeSubmission.find({
+    createdBy: createdBy,
+  });
   return result;
 };
 
