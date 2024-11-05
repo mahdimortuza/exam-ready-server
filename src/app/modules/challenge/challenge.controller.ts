@@ -52,7 +52,7 @@ const deleteChallenge = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Challenge is updated successfully',
+    message: 'Challenge is deleted successfully',
     data: result,
   });
 });

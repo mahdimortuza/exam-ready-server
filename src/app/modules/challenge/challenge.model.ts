@@ -7,13 +7,18 @@ const challengeSchema = new Schema<TChallenge>(
       type: String,
       required: [true, 'Challenge title is required'],
     },
-    challenge: {
+    challengeDescription: {
       type: String,
       required: [true, 'Challenge description is required'],
     },
     hint: {
       type: String,
       required: [true, 'Challenge hint is required'],
+    },
+    status: {
+      type: String,
+      enum: ['upcoming', 'ongoing', 'finished'],
+      default: 'upcoming',
     },
     createdBy: {
       type: String,

@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { AdminRoutes } from '../modules/admin/admin.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { ChallengeRoutes } from '../modules/challenge/challenge.route';
+import { ChallengeSubmissionRoutes } from '../modules/challengeSubmission/challengeSubmission.route';
 import { ExamQuizRoutes } from '../modules/examQuiz/examQuiz.route';
 import { ExamRoutes } from '../modules/exams/exam.route';
 import { ExamSubmissionRoutes } from '../modules/examSubmission/examSubmission.route';
@@ -44,6 +45,10 @@ const moduleRoutes = [
   {
     path: '/challenges',
     route: ChallengeRoutes,
+  },
+  {
+    path: '/challenge-submission',
+    route: ChallengeSubmissionRoutes,
   },
   {
     path: '/exam-submit',

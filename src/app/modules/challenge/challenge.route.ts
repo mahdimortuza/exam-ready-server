@@ -10,6 +10,6 @@ router.get('/:id', ChallengeController.getSingleChallenge);
 
 router.patch('/:id', ChallengeController.updateChallenge);
 
-router.delete('/:id', ChallengeController.updateChallenge);
+router.delete('/:id', ChallengeController.deleteChallenge);
 
 export const ChallengeRoutes = router;
