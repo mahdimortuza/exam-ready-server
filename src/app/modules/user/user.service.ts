@@ -68,7 +68,7 @@ const createStudentIntoDb = async (password: string, payload: TStudent) => {
   userData.password = password || (config.default_password as string);
 
   // Set user role
-  userData.role = 'user';
+  userData.role = 'student';
 
   // Set user email
   userData.email = payload.email;
