@@ -3,9 +3,11 @@ import { AdminRoutes } from '../modules/admin/admin.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { ChallengeRoutes } from '../modules/challenge/challenge.route';
 import { ChallengeSubmissionRoutes } from '../modules/challengeSubmission/challengeSubmission.route';
+import { DemoRoutes } from '../modules/demoExam/demo.route';
 import { ExamQuizRoutes } from '../modules/examQuiz/examQuiz.route';
 import { ExamRoutes } from '../modules/exams/exam.route';
 import { ExamSubmissionRoutes } from '../modules/examSubmission/examSubmission.route';
+import { SyllabusRoutes } from '../modules/examSyllabus/examSyllabus.route';
 import { NoticeRoutes } from '../modules/notice/notice.route';
 import { ParticipationRoutes } from '../modules/participation/participation.route';
 import { ResultRoutes } from '../modules/result/result.route';
@@ -49,6 +51,14 @@ const moduleRoutes = [
   {
     path: '/challenge-submission',
     route: ChallengeSubmissionRoutes,
+  },
+  {
+    path: '/demo',
+    route: DemoRoutes,
+  },
+  {
+    path: '/syllabus',
+    route: SyllabusRoutes,
   },
   {
     path: '/exam-submit',
