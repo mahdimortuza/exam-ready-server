@@ -5,7 +5,6 @@ import { SyllabusServices } from './examSyllabus.service';
 
 const createSyllabus = catchAsync(async (req, res) => {
   const syllabus = req.body;
-  console.log(req.body);
   const result = await SyllabusServices.createSyllabusIntoDb(syllabus);
   sendResponse(res, {
     statusCode: httpStatus.OK,

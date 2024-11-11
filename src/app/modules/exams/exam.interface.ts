@@ -1,12 +1,12 @@
 import { Types } from 'mongoose';
 
 export type TExam = {
-  examName: string; // Title of the exam
-  createdBy: string; // Email or identifier of the creator
-  questions: Types.ObjectId[]; // Array of objects representing questions (flexible structure)
-  status: 'upcoming' | 'ongoing' | 'finished'; // Status of the exam
-  startTime: string; // Start time of the exam
-  endTime: string; // End time of the exam
+  examName: string;
+  createdBy: string;
+  questions: Types.ObjectId[];
+  status: 'upcoming' | 'ongoing' | 'finished';
+  startTime: string;
+  endTime: string;
   examType: 'weakly' | 'daily';
-  isDeleted: boolean; // Logical deletion flag
+  isDeleted: boolean;
 };

@@ -3,6 +3,7 @@ import { AdminRoutes } from '../modules/admin/admin.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { ChallengeRoutes } from '../modules/challenge/challenge.route';
 import { ChallengeSubmissionRoutes } from '../modules/challengeSubmission/challengeSubmission.route';
+import { CurrentAffairsRoutes } from '../modules/currentAffairs/currentAffairs.route';
 import { DemoRoutes } from '../modules/demoExam/demo.route';
 import { ExamQuizRoutes } from '../modules/examQuiz/examQuiz.route';
 import { ExamRoutes } from '../modules/exams/exam.route';
@@ -10,6 +11,7 @@ import { ExamSubmissionRoutes } from '../modules/examSubmission/examSubmission.r
 import { SyllabusRoutes } from '../modules/examSyllabus/examSyllabus.route';
 import { NoticeRoutes } from '../modules/notice/notice.route';
 import { ParticipationRoutes } from '../modules/participation/participation.route';
+import { QuestionBankRoutes } from '../modules/questionBank/questionBank.route';
 import { ResultRoutes } from '../modules/result/result.route';
 import { StudentRoutes } from '../modules/students/student.route';
 import { SubjectNameRoutes } from '../modules/subjectName/subjectName.route';
@@ -51,6 +53,14 @@ const moduleRoutes = [
   {
     path: '/challenge-submission',
     route: ChallengeSubmissionRoutes,
+  },
+  {
+    path: '/current-affairs',
+    route: CurrentAffairsRoutes,
+  },
+  {
+    path: '/question-bank',
+    route: QuestionBankRoutes,
   },
   {
     path: '/demo',
