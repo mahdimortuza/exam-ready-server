@@ -1,4 +1,5 @@
 import QueryBuilder from '../../builder/QueryBuilder';
+import { questionBankSearchableFields } from './questionBank.constant';
 import { TQuestionBank } from './questionBank.interface';
 import { QuestionBank } from './questionBank.model';
 
@@ -7,17 +8,38 @@ const createQuestionBankIntoDb = async (payload: TQuestionBank) => {
   return result;
 };
 
+// const getAllQuestionBankFromDb = async (query: Record<string, unknown>) => {
+//   const questionBankQuery = new QueryBuilder(
+//     QuestionBank.find().populate('questions'),
+//     query,
+//   )
+//     .search(questionBankSearchableFields)
+//     .filter()
+//     .sort()
+//     .paginate()
+//     .fields(); // Use 'questions' instead of 'ExamQuiz'
+//   const meta = await questionBankQuery.countTotal();
+//   const result = await questionBankQuery.modelQuery;
+//   return {
+//     meta,
+//     result,
+//   };
+// };
+
 const getAllQuestionBankFromDb = async (query: Record<string, unknown>) => {
   const questionBankQuery = new QueryBuilder(
     QuestionBank.find().populate('questions'),
     query,
-  ); // Use 'questions' instead of 'ExamQuiz'
+  )
+    .search(questionBankSearchableFields)
+    .filter()
+    .sort()
+    .paginate()
+    .fields();
+
   const meta = await questionBankQuery.countTotal();
   const result = await questionBankQuery.modelQuery;
-  return {
-    meta,
-    result,
-  };
+  return { meta, result };
 };
 
 const getSingleQuestionBankFromDb = async (id: string) => {

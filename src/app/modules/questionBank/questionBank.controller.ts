@@ -16,12 +16,13 @@ const createQuestionBank = catchAsync(async (req, res) => {
 });
 
 const getAllQuestionBanks = catchAsync(async (req, res) => {
-  const result = await QuestionBankServices.getAllQuestionBankFromDb();
+  const result = await QuestionBankServices.getAllQuestionBankFromDb(req.query);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Question banks are fetched successfully',
-    data: result,
+    meta: result.meta,
+    data: result.result,
   });
 });
 
