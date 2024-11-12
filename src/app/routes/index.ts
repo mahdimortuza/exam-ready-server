@@ -5,6 +5,7 @@ import { ChallengeRoutes } from '../modules/challenge/challenge.route';
 import { ChallengeSubmissionRoutes } from '../modules/challengeSubmission/challengeSubmission.route';
 import { CurrentAffairsRoutes } from '../modules/currentAffairs/currentAffairs.route';
 import { DemoRoutes } from '../modules/demoExam/demo.route';
+import { ExamGuidelinesRoutes } from '../modules/examGuidelines/examGuidelines.route';
 import { ExamQuizRoutes } from '../modules/examQuiz/examQuiz.route';
 import { ExamRoutes } from '../modules/exams/exam.route';
 import { ExamSubmissionRoutes } from '../modules/examSubmission/examSubmission.route';
@@ -53,6 +54,10 @@ const moduleRoutes = [
   {
     path: '/challenge-submission',
     route: ChallengeSubmissionRoutes,
+  },
+  {
+    path: '/exam-guidelines',
+    route: ExamGuidelinesRoutes,
   },
   {
     path: '/current-affairs',
