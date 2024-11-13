@@ -41,6 +41,14 @@ const examSchema = new Schema<TExam>(
       type: String,
       required: [true, 'End time is required'],
     },
+    startDate: {
+      type: String,
+      required: [true, 'Start time is required'],
+    },
+    endDate: {
+      type: String,
+      required: [true, 'End time is required'],
+    },
     examType: {
       type: String,
       enum: ['weakly', 'daily'],
