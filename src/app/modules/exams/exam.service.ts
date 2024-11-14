@@ -1,4 +1,3 @@
-import cron from 'node-cron';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import QueryBuilder from '../../builder/QueryBuilder';
 import { TExam } from './exam.interface';
@@ -105,11 +104,11 @@ const updateExamStatuses = async () => {
   }
 };
 
-// Cron job every minute to check and update statuses
-cron.schedule('*/1 * * * *', () => {
-  // console.log('Cron job is running every 2 minutes');
-  updateExamStatuses();
-});
+// // Cron job every minute to check and update statuses
+// cron.schedule('*/1 * * * *', () => {
+//   // console.log('Cron job is running every 2 minutes');
+//   updateExamStatuses();
+// });
 
 export const ExamServices = {
   createNewExamIntoDb,
@@ -117,4 +116,5 @@ export const ExamServices = {
   getSingleExamFromDb,
   updateExamQuizIntoDb,
   updateStatusIntoDb,
+  updateExamStatuses,
 };

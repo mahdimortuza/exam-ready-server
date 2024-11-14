@@ -23,6 +23,8 @@ const adminSchema = new Schema<TAdmin>(
     },
     image: {
       type: String,
+      default:
+        'https://res.cloudinary.com/dkwnfybul/image/upload/fl_preserve_transparency/v1731612090/cat_lx230v.jpg?_s=public-apps',
     },
     contactNo: {
       type: String,

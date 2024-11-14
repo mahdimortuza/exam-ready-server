@@ -24,6 +24,8 @@ const studentSchema = new Schema<TStudent>(
     },
     image: {
       type: String,
+      default:
+        'https://res.cloudinary.com/dkwnfybul/image/upload/fl_preserve_transparency/v1731612090/cat_lx230v.jpg?_s=public-apps',
     },
     isDeleted: {
       type: Boolean,
