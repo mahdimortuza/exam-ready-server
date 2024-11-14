@@ -106,7 +106,7 @@ const updateExamStatuses = async () => {
 };
 
 // Cron job every minute to check and update statuses
-cron.schedule('*/2 * * * *', () => {
+cron.schedule('*/1 * * * *', () => {
   // console.log('Cron job is running every 2 minutes');
   updateExamStatuses();
 });
