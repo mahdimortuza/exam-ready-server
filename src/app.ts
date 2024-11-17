@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ['http://localhost:3000'],
+    origin: ['https://exam-ready-client-latest.vercel.app'],
     methods: 'GET, POST, PUT, PATCH, DELETE',
     credentials: true,
   }),
